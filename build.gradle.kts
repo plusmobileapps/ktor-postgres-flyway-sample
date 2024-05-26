@@ -1,3 +1,12 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath(libs.postgres.driver)
+    }
+}
+
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.kotlin.serialization)
@@ -22,6 +31,8 @@ dependencies {
     implementation(libs.exposed.core)
     implementation(libs.exposed.dao)
     implementation(libs.exposed.jdbc)
+    implementation(libs.flyway.core)
+    implementation(libs.flyway.postgres)
     implementation(libs.hikari.core)
     implementation(libs.ktor.server.core)
     implementation(libs.ktor.server.netty)
