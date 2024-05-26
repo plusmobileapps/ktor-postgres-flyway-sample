@@ -11,12 +11,14 @@ import java.util.UUID
 data class DogDto(
     val uuid: String,
     val name: String,
+    val breed: String?,
     val imageUrl: String?,
 ) {
     companion object {
         fun fromEntity(dog: Dog): DogDto = DogDto(
             uuid = dog.id.value.toString(),
             name = dog.name,
+            breed = dog.breed,
             imageUrl = dog.imageUrl,
         )
     }
@@ -25,6 +27,7 @@ data class DogDto(
 object Dogs : UUIDTable() {
     val name = varchar("name", 50).index()
     val imageUrl = text("image_url").nullable()
+    val breed = text("breed").nullable()
 }
 
 class Dog(id: EntityID<UUID>) : UUIDEntity(id) {
@@ -33,4 +36,5 @@ class Dog(id: EntityID<UUID>) : UUIDEntity(id) {
 
     var name: String by Dogs.name
     var imageUrl: String? by Dogs.imageUrl
+    var breed: String? by Dogs.breed
 }

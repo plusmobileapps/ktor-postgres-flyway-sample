@@ -1,0 +1,2 @@
+ALTER TABLE Dogs
+    ADD COLUMN breed TEXT;

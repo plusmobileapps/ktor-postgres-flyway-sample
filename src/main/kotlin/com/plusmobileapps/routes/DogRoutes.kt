@@ -38,6 +38,7 @@ private fun Route.addDog(database: Database) {
                 Dog.new {
                     name = dog.name
                     imageUrl = dog.imageUrl
+                    breed = dog.breed
                 }
             }
             call.respond(HttpStatusCode.OK, DogDto.fromEntity(newDog))
