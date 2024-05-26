@@ -3,7 +3,7 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath(libs.postgres.driver)
+        classpath(libs.driver.postgres)
     }
 }
 
@@ -38,10 +38,14 @@ dependencies {
     implementation(libs.ktor.server.netty)
     implementation(libs.ktor.server.content.negotiation)
     implementation(libs.ktor.server.serialization)
+    implementation(libs.kotlin.coroutines.core)
     implementation(libs.kotlin.serialization.json)
     implementation(libs.logback.classic)
-    implementation(libs.postgres.driver)
+    implementation(libs.driver.postgres)
 
     testImplementation(libs.ktor.server.tests)
     testImplementation(libs.kotlin.test.junit)
+    testImplementation(libs.kotlin.coroutines.test)
+    testImplementation(libs.driver.h2)
+    testImplementation(libs.ktor.client.contentnegotiation)
 }

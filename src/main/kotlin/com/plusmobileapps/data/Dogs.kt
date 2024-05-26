@@ -25,7 +25,7 @@ data class DogDto(
 }
 
 object Dogs : UUIDTable() {
-    val name = varchar("name", 50).index()
+    val name = varchar("dog_name", 50).index()
     val imageUrl = text("image_url").nullable()
     val breed = text("breed").nullable()
 }

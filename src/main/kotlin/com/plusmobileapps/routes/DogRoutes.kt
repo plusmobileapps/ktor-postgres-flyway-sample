@@ -11,9 +11,13 @@ import io.ktor.server.routing.Route
 import io.ktor.server.routing.delete
 import io.ktor.server.routing.get
 import io.ktor.server.routing.post
+import kotlinx.serialization.Serializable
 import java.util.UUID
 
 const val DOGS_ENDPOINT = "/dogs"
+
+@Serializable
+data class DogsResponse(val dogs: List<DogDto>)
 
 fun Route.dogRoutes(database: Database) {
     getDogs(database)
@@ -26,7 +30,7 @@ private fun Route.getDogs(database: Database) {
         val dogs = database.dbQuery {
             Dog.all().toList().map { DogDto.fromEntity(it) }
         }
-        call.respond(HttpStatusCode.OK, mapOf("dogs" to dogs))
+        call.respond(HttpStatusCode.OK, DogsResponse(dogs))
     }
 }
 
