@@ -4,6 +4,7 @@ exposed = "0.50.1"
 flyway = "10.12.0"
 ktor = "2.3.11"
 kotlin = "2.0.0"
+kotest = "5.9.0"
 logback = "1.4.14"
 
 [libraries]
@@ -27,6 +28,7 @@ logback-classic = { group = "ch.qos.logback", name = "logback-classic", version.
 
 ktor-server-tests = { group = "io.ktor", name = "ktor-server-tests-jvm", version.ref = "ktor" }
 kotlin-test-junit = { group = "org.jetbrains.kotlin", name = "kotlin-test-junit", version.ref = "kotlin" }
+kotest-assertions = { group = "io.kotest", name = "kotest-assertions-core", version.ref = "kotest"}
 
 [plugins]
 kotlin-jvm = { id = "org.jetbrains.kotlin.jvm", version.ref = "kotlin" }

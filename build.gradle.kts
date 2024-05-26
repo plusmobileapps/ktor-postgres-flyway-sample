@@ -48,4 +48,5 @@ dependencies {
     testImplementation(libs.kotlin.coroutines.test)
     testImplementation(libs.driver.h2)
     testImplementation(libs.ktor.client.contentnegotiation)
+    testImplementation(libs.kotest.assertions)
 }

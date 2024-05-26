@@ -18,10 +18,20 @@ class TestDatabase(
     private val context: CoroutineContext = UnconfinedTestDispatcher(),
 ) : Database {
 
+    private val datasource = h2DataSource()
+    private val flyway = Flyway.configure()
+        .dataSource(datasource)
+        .cleanDisabled(false)
+        .load()
+
     init {
-        val datasource = h2DataSource()
-        migrate(datasource)
+        flyway.migrate()
         org.jetbrains.exposed.sql.Database.connect(datasource)
+    }
+
+    fun close() {
+        flyway.clean()
+        datasource.close()
     }
 
     override suspend fun <T> dbQuery(block: () -> T): T = withContext(context) {
@@ -42,7 +52,7 @@ class TestDatabase(
         listOf(dog1, dog2)
     }
 
-    private fun h2DataSource(): DataSource = HikariDataSource(
+    private fun h2DataSource() = HikariDataSource(
         HikariConfig().apply {
             driverClassName = "org.h2.Driver"
             jdbcUrl = "jdbc:h2:mem:test;DB_CLOSE_DELAY=-1"
@@ -52,11 +62,4 @@ class TestDatabase(
             validate()
         }
     )
-
-    private fun migrate(dataSource: DataSource) {
-        Flyway.configure()
-            .dataSource(dataSource)
-            .load()
-            .migrate()
-    }
 }
