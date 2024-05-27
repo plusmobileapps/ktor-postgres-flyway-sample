@@ -1,6 +1,8 @@
 # Ktor Postgres with Flyway Sample
 
-A sample Ktor project with a Postgres database and migrations handled with the Flyway Java API. 
+A sample Ktor project with a Postgres database and migrations handled with the Flyway Java API. I wrote an article to complement this sample project. 
+
+https://plusmobileapps.com/2024/05/25/flyway-exposed-ktor.html
 
 ## Libraries
 
